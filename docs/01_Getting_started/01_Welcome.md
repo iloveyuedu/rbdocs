@@ -1,4 +1,3 @@
-# Welcome
 
 RedBeanPHP is a **lightweight**, **configuration-less**
 <abbr title="Object Relational Mapper">ORM</abbr> library for PHP.
