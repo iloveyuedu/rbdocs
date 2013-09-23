@@ -55,6 +55,10 @@ code("
 </p>
 <h2>News</h2>
 <p>
+<time>2013-09-23</time>: <a title="RedBeanPHP 3.5 Beta 8" href="/beta_testing">RedBeanPHP 3.5 beta 8</a> has been released!
+<br/>
+<time>2013-09-22</time>: <a title="RedBeanPHP 3.5 Beta 7" href="/beta_testing">RedBeanPHP 3.5 beta 7</a> has been released!
+<br />
 <time>2013-09-13</time>: It's Friday the 13th, let's test some beans! <a title="RedBeanPHP 3.5 Beta 6"  href="/beta_testing">RedBeanPHP 3.5 beta 6</a> is out!
 <br />
 <time>2013-09-10</time>: <a title="RedBeanPHP 3.5 Beta 5"  href="/beta_testing">RedBeanPHP 3.5 Beta 5</a> has been released!
@@ -3369,10 +3373,16 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 </p>
 
 <p>
-	RedBeanPHP 3.5 Beta 6 is here!
+	RedBeanPHP 3.5 Beta 8 is here!
 	Download
-	<a title="Download the latest beta" href="downloads/RedBeanPHP3_5beta6.tar.gz" >RedBeanPHP 3.5 Beta 6</a>.
+	<a title="Download the latest beta" href="downloads/RedBeanPHP3_5beta8.tar.gz" >RedBeanPHP 3.5 Beta 8</a>.
 	and start testing the new RedBeanPHP !	
+</p>
+
+<h2>New in beta 8</h2>
+<p>
+	Read the <i>HTTP/1.1</i> spec, turns out Resty BeanCan confused the meaning of POST and PUT so I swapped these.
+	Also updated the <a href="/rest_server" title="Resty BeanCan documentation">manual</a> and the tests. So, <b>POST</b> means <b>CREATE</b> and <b>PUT</b> means <b>UPDATE</b>.
 </p>
 
 <h2>Changes in RedBeanPHP 3.5</h2>
@@ -4314,23 +4324,23 @@ In case of an error:
 <p>
 	This will retrieve ad 2 on page 4 of site 3. 
 </p>
-<h2>PUT request</h2>
+<h2>POST request</h2>
 <p>
 	To add a new page:
 </p>
 <?php code("
-	\$can->handleREST(\$user, 'site/3/page', 'PUT', array(
+	\$can->handleREST(\$user, 'site/3/page', 'POST', array(
 		'bean' => array(
 			'title' => 'my new page'
 		)
 	)); //returns array('result'=>array('id' => 1))
 ");?>
-<h2>POST request</h2>
+<h2>PUT request</h2>
 <p>
 	To update page 4:
 </p>
 <?php code("
-	\$can->handleREST(\$user, 'site/3/page/4', 'POST', array(
+	\$can->handleREST(\$user, 'site/3/page/4', 'PUT', array(
 		'bean' => array(
 			'title' => 'changed title'
 		)
@@ -4410,6 +4420,15 @@ In case of an error:
 	errors (syntax) return a 400 code.
 </p>
 
+<h2>Why is PUT used to UPDATE beans?</h2>
+<p>
+	According to the <a target="_blank" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.6" title="HTTP/1.1 Specification">HTTP/1.1</a> 
+	specification, <b>PUT</b> and <b>DELETE</b> need to be <abbr title="Performing an action multiple times has the same outcome as performing the action once.">idempotent</abbr>.
+	<i>PUTTING</i> a bean 3 times with the same
+	payload will have the same effect as <i>PUTTING</i> that bean just once. Same applies to
+	<i>DELETE</i> and <i>GET</i>. On the other hand, POSTING a bean X times creates X new beans, so
+	the HTTP POST method is <b>NOT</b> idempotent.
+</p>
 
 <p class="note">
 	Don't forget to configure the <a href="/beancan_server#whitelist" title="Learn about the whitelist for all BeanCan Servers.">whitelist</a>!
