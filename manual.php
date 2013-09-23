@@ -2199,7 +2199,7 @@ echo code("
 	Be careful with underscores; they are used for linking tables and foreign keys. It's safe to use
 	underscores in property names, but try not to use them in type names/tables. 
 </p>
-<h2>Schema functions</h2>
+<h2>Schema functions (3.5+)</h2>
 <p>
 	To obtain the name of the table of a bean:
 </p>
