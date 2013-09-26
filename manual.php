@@ -55,6 +55,10 @@ code("
 </p>
 <h2>News</h2>
 <p>
+<time>2013-09-26</time>: <a title="New: Error logging plugin" href="https://github.com/zewa666/RedBean_StdError_QueryLogger" target="_blank">StdErr Plugin</a> for RedBeanPHP.
+<br />
+<time>2013-09-25</time>: <a title="RedBeanPHP 3.5 Beta 9" href="/beta_testing">RedBeanPHP 3.5 beta 9</a> has been released!
+<br />
 <time>2013-09-23</time>: <a title="RedBeanPHP 3.5 Beta 8" href="/beta_testing">RedBeanPHP 3.5 beta 8</a> has been released!
 <br/>
 <time>2013-09-22</time>: <a title="RedBeanPHP 3.5 Beta 7" href="/beta_testing">RedBeanPHP 3.5 beta 7</a> has been released!
@@ -2316,6 +2320,11 @@ echo code("
 	The transaction() method also supports nested transactions.
 </p>
 
+<p class="version">
+	As of version 3.5, R::transaction() will return the result of
+	the closure (if successful).
+</p>
+
 <h1>Nuke</h1>
 <p>
 	The R::nuke() command just does what you think it does. It <b>empties</b> the entire database.
@@ -3373,12 +3382,16 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 </p>
 
 <p>
-	RedBeanPHP 3.5 Beta 8 is here!
+	RedBeanPHP 3.5 Beta 9 is here!
 	Download
-	<a title="Download the latest beta" href="downloads/RedBeanPHP3_5beta8.tar.gz" >RedBeanPHP 3.5 Beta 8</a>.
+	<a title="Download the latest beta" href="downloads/RedBeanPHP3_5beta9.tar.gz" >RedBeanPHP 3.5 Beta 9</a>.
 	and start testing the new RedBeanPHP !	
 </p>
 
+<h2>New in beta 9</h2>
+<p>
+	R::transaction() now returns result.
+</p>
 <h2>New in beta 8</h2>
 <p>
 	Read the <i>HTTP/1.1</i> spec, turns out Resty BeanCan confused the meaning of POST and PUT so I swapped these.
