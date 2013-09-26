@@ -58,31 +58,6 @@ code("
 <time>2013-09-26</time>: <a title="New: Error logging plugin" href="https://github.com/zewa666/RedBean_StdError_QueryLogger" target="_blank">StdErr Plugin</a> for RedBeanPHP.
 <br />
 <time>2013-09-25</time>: <a title="RedBeanPHP 3.5 Beta 9" href="/beta_testing">RedBeanPHP 3.5 beta 9</a> has been released!
-<br />
-<time>2013-09-23</time>: <a title="RedBeanPHP 3.5 Beta 8" href="/beta_testing">RedBeanPHP 3.5 beta 8</a> has been released!
-<br/>
-<time>2013-09-22</time>: <a title="RedBeanPHP 3.5 Beta 7" href="/beta_testing">RedBeanPHP 3.5 beta 7</a> has been released!
-<br />
-<time>2013-09-13</time>: It's Friday the 13th, let's test some beans! <a title="RedBeanPHP 3.5 Beta 6"  href="/beta_testing">RedBeanPHP 3.5 beta 6</a> is out!
-<br />
-<time>2013-09-10</time>: <a title="RedBeanPHP 3.5 Beta 5"  href="/beta_testing">RedBeanPHP 3.5 Beta 5</a> has been released!
-<br />
-<time>2013-09-07</time>: <a title="RedBeanPHP 3.5 Beta 4"  href="/beta_testing">RedBeanPHP 3.5 Beta 4</a> has been released!
-<br />
-<time>2013-09-04</time>: <a title="RedBeanPHP 3.5 Beta 3"  href="/beta_testing">RedBeanPHP 3.5 Beta 3</a> has been released!
-<br />
-<time>2013-09-03</time>: <a title="RedBeanPHP 3.5 Beta 2"  href="/beta_testing">RedBeanPHP 3.5 Beta 2</a> has been released!
-<br />
-<time>2013-08-31</time>: <a title="RedBeanPHP 3.5 Beta 1"  href="/beta_testing">RedBeanPHP 3.5 Beta 1</a> has been released!
-<br />
-<time>2013-08-17</time>: <a title="RedBeanPHP 3.5 Alpha 7" href="/beta_testing">RedBeanPHP 3.5 Alpha 7</a> has been released!
-<br />
-<time>2013-08-15</time>: <a title="RedBeanPHP 3.5 Alpha 6" href="/beta_testing">RedBeanPHP 3.5 Alpha 6</a> has been released!
-<br />
-<time>2013-08-13</time>: <a title="RedBeanPHP 3.5 Alpha 4" href="/beta_testing">RedBeanPHP 3.5 Alpha 4</a> has been released!
-<br />
-<time>2013-07-25</time>: <a title="RedBeanPHP 3.5 Alpha 1" href="/beta_testing">Alpha release</a> of RedBeanPHP 3.5!
-<br />
 </p>
 <h2>Why RedBeanPHP</h2>
 <p>	
@@ -4557,6 +4532,30 @@ code("
 </p>
 <h2>What happened in before...</h2>
 <p>
+<time>2013-09-23</time>: <a title="RedBeanPHP 3.5 Beta 8" href="/beta_testing">RedBeanPHP 3.5 beta 8</a> has been released!
+<br/>
+<time>2013-09-22</time>: <a title="RedBeanPHP 3.5 Beta 7" href="/beta_testing">RedBeanPHP 3.5 beta 7</a> has been released!
+<br />
+<time>2013-09-13</time>: It's Friday the 13th, let's test some beans! <a title="RedBeanPHP 3.5 Beta 6"  href="/beta_testing">RedBeanPHP 3.5 beta 6</a> is out!
+<br />
+<time>2013-09-10</time>: <a title="RedBeanPHP 3.5 Beta 5"  href="/beta_testing">RedBeanPHP 3.5 Beta 5</a> has been released!
+<br />
+<time>2013-09-07</time>: <a title="RedBeanPHP 3.5 Beta 4"  href="/beta_testing">RedBeanPHP 3.5 Beta 4</a> has been released!
+<br />
+<time>2013-09-04</time>: <a title="RedBeanPHP 3.5 Beta 3"  href="/beta_testing">RedBeanPHP 3.5 Beta 3</a> has been released!
+<br />
+<time>2013-09-03</time>: <a title="RedBeanPHP 3.5 Beta 2"  href="/beta_testing">RedBeanPHP 3.5 Beta 2</a> has been released!
+<br />
+<time>2013-08-31</time>: <a title="RedBeanPHP 3.5 Beta 1"  href="/beta_testing">RedBeanPHP 3.5 Beta 1</a> has been released!
+<br />
+<time>2013-08-17</time>: <a title="RedBeanPHP 3.5 Alpha 7" href="/beta_testing">RedBeanPHP 3.5 Alpha 7</a> has been released!
+<br />
+<time>2013-08-15</time>: <a title="RedBeanPHP 3.5 Alpha 6" href="/beta_testing">RedBeanPHP 3.5 Alpha 6</a> has been released!
+<br />
+<time>2013-08-13</time>: <a title="RedBeanPHP 3.5 Alpha 4" href="/beta_testing">RedBeanPHP 3.5 Alpha 4</a> has been released!
+<br />
+<time>2013-07-25</time>: <a title="RedBeanPHP 3.5 Alpha 1" href="/beta_testing">Alpha release</a> of RedBeanPHP 3.5!
+<br />
 <time>2013-06-30</time>: <a title="New N-M bean relation system" href="https://github.com/gabordemooij/redbean/commit/0205fa8323d2e228dcc4da2dda410921e8be03cd">Improved</a> retrieval of shared beans so you filter/order by links.
 <br /> 
 <time>2013-06-23</time>: <a href="https://github.com/gabordemooij/redbean/commit/dbad985e1cd89bb3ab0e43f6c4846ac37b9f2634" title="Take a look at the new count methods in RedBeanPHP 3.5!">Sneak preview</a> of relation counts in RedBeanPHP 3.5!
