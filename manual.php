@@ -4019,8 +4019,6 @@ These plugin extensions of R are now compiled into the R-class by the Replica Bu
 methods on the facade class itself you should replace this code using a find replace action on your project.
 </p>
 
-
-
 <h1>License</h1>
 <h2>New BSD License</h2>
 <p>
@@ -4549,7 +4547,11 @@ code("
 	test configuration file config/test.ini 
 </p>
 
-<h1>News Archive</h1>
+<h1>Archive</h1>
+<p>
+	Welcome to the RedBeanPHP Archive.
+</p>
+<h2>News Archive</h2>
 <p>
 	Old news is no news... but for the sake of archiving...
 </p>
@@ -4581,7 +4583,7 @@ code("
 <time>2013-04-01</time>: RedBeanPHP 3.4 has been released. See <a href="/changelog" title="Explore RedBeanPHP 3.4">changelog</a> for details.
 <br /><time>2013-03-01</time>: We are currently <a href="/beta_testing" title="beta">beta</a> testing RedBeanPHP 3.4. Help us test the new release of RedBeanPHP.
 </p>
-<h1>Old Manuals</h1>
+<h2>Old Manuals</h2>
 <p>
 	Old manuals can be found here:
 </p>
