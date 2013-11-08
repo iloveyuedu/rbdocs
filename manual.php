@@ -32,6 +32,7 @@ function jcode($code){
 
 <h1>Welcome</h1>
 <p>
+	<img style="position:relative;top:-30px;" alt="tugboat, depicting redbeanphp as the little library tugging big projects." title="RedBeanPHP 3.5 LTS, the little big ORM." src="/img/tugboat.png" />
 	RedBeanPHP is a <b>lightweight</b>, <b>configuration-less</b> 
 	<abbr title="Object Relational Mapper">ORM</abbr> library for PHP.
 	Let's look at the code, this is how you do 
@@ -55,9 +56,19 @@ code("
 </p>
 <h2>News</h2>
 <p>
+<time>2013-11-06</time>: RedBeanPHP 3.5.1 has been released, this is a <a href="/changelog" title="Read about the changes in RB 3.5.1">regular maintenance update</a>.
+<br />
+<time>2013-11-04</time>: Added a <a title="German Porter Stemmer Plugin" href="/plugins#german_porter_stemmer_plugin">German Porter Stemmer</a> Plugin from Zewa.
+<br />
+<time>2013-10-01</time>: RedBeanPHP 3.5 has been released. Read the <a href="/changelog" title="Changelog">Changelog</a>.
+<br />
+<time>2013-09-28</time>: New in <a title="RedBeanPHP 3.5 Beta 10" href="/beta_testing">RedBeanPHP 3.5 beta 10</a>: dynamic plugins with R::ext(), R::dispenseAll for extremely lazy developers and R::loadAll.
+<br />
 <time>2013-09-26</time>: <a title="New: Error logging plugin" href="https://github.com/zewa666/RedBean_StdError_QueryLogger" target="_blank">StdErr Plugin</a> for RedBeanPHP.
 <br />
 <time>2013-09-25</time>: <a title="RedBeanPHP 3.5 Beta 9" href="/beta_testing">RedBeanPHP 3.5 beta 9</a> has been released!
+<br />
+For older news, visit the <a href="/archive" title="Older news, visit the RedBeanPHP News Archive.">Archive</a>.
 </p>
 <h2>Why RedBeanPHP</h2>
 <p>	
@@ -115,17 +126,12 @@ code("
 
 
 
-<h2 id="download">One-File Download</h2>
+<h2 id="download">Download RedBeanPHP 3.5.1 (LTS stable)</h2>
 <p>
 	RedBeanPHP has been compiled into one single file for easy installation. No paths, no auto-loaders,
 	no configurations, just download the all-in-one package and require the single <b>rb.php</b> file
 	in your code.
-	<br /><a style="font-weight:bold;" href="/downloadredbean.php" title="Get RedBeanPHP">DOWNLOAD Latest RedBeanPHP (Version 3.4.7)</a>.
-</p>
-
-<h2 id="support">Enterprise Support</h2>
-<p>
-	RedBeanPHP commercial support is provided by <a href="http://www.organicsoftware.nl/index_en.html" title="Organic Software">Organic Software</a>.
+	<br /><a style="font-weight:bold;" href="/downloadredbean.php" title="Get RedBeanPHP">DOWNLOAD Latest RedBeanPHP (Version 3.5.1)</a>.
 </p>
 
 
@@ -134,6 +140,7 @@ code("
 <i style="font-size:10px;">RedBeanPHP is used by:</i><br /><br />
 <img style="position:relative;right:5px;" src="/img/logos3.png" alt="Logos of companies using RedBeanPHP for ORM."/>
 </p>
+
 <h1>Quick tour</h1>
 <p>
 	To setup RedBeanPHP for testing purposes, just use:
@@ -525,17 +532,28 @@ code("
 	to generate the current date(time) if you like.
 	
 </p>
-<h2>Multi Dispense</h2>
+<h2 id="dispenseall">Dispense multiple beans</h2>
 <p>
 	To dispense multiple beans at once:
 </p>
 <?php code("
 	\$twoBooks = R::dispense('book',2);
 ");?>
+<p>
+	RedBeanPHP 3.5 offers even more comfort for lazy developers:
+</p>
+<?php code("
+	//Dispense a book and page in one call:
+	list(\$book, \$page)  = R::dispenseAll( 'book,page' );
+
+	//Dispense a book and 10 pages:
+	list(\$book, \$pages) = R::dispenseAll( 'book,page*10' );
+"); ?>
+
 
 <h2>Use the cache!</h2>
 <p class="version">
-	Start your code with: R::$writer->setUseCache(true); to make use of query caching.
+	Start your code with: R::useWriterCache(true); to make use of query caching.
 	This will prevent RedBeanPHP from performing unnecessary queries. This feature is
 	available since RedBeanPHP 3.4. While RedBeanPHP offers other caching mechanisms as
 	well this is the easiest to use and it's completely transparent!
@@ -609,13 +627,19 @@ code("
 <p class="version">
 	Properties of a loaded bean only contain <b>STRING</b> or <b>NULL</b> values. 
 </p>
-<h2>Batch Loader</h2>
+<h2 id="batch">Batch Loader</h2>
 <p>
 	To load a <b>batch</b> of beans at once:
 </p>
 <?php code("
 	\$books = R::batch('book',array(\$id1,\$id2));
 ");?>
+
+<p class="version">
+	In RedBeanPHP 3.5 you can also use R::loadAll instead of R::batch.
+	loadAll() is nothing more than an alias.
+</p>
+
 <h2>Counting</h2>
 <p>
 	To <b>count</b> beans:
@@ -732,29 +756,6 @@ code("
 	<a href="/finding_beans" title="Finding beans with RedBeanPHP ORM with some good old SQL">RedBeanPHP uses familiar SQL</a> to
 	search for beans in the database.
 </p>
-
-<h1>Tainted</h1>
-<p>
-	To see whether a bean has been changed:
-</p>
-<?php code("
-	\$bean->getMeta('tainted');
-");?>
-<p>
-	Note that certain properties, like lists (see chapter lists) also cause a bean to get
-	marked as tainted.
-	In RedBeanPHP version 3.4 there is a shorthand method: isTainted().
-</p>
-<h2>Old Values (3.4)</h2>
-<p>
-	In RedBeanPHP 3.4+ you can check whether a certain property has changed and you can retrieve
-	the previous value.
-</p>
-<?php code("
-	\$post->hasChanged('title'); //has title been changed?
-	\$oldTitle = \$post->old('title');
-");?>
-
 
 <category>Finding</category>
 
@@ -2758,6 +2759,33 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 		</tbody>
 </table>
 
+<h2>Tainted</h2>
+<p>
+	To see whether a bean has been changed:
+</p>
+<?php code("
+	\$bean->getMeta('tainted');
+");?>
+<p>
+	Note that certain properties, like lists (see chapter lists) also cause a bean to get
+	marked as tainted.
+	In RedBeanPHP version 3.4 there is a shorthand method: isTainted().
+</p>
+
+<h2>Old Values (3.4)</h2>
+<p>
+	In RedBeanPHP 3.4+ you can check whether a certain property has changed and you can retrieve
+	the previous value.
+</p>
+<?php code("
+	\$post->hasChanged('title'); //has title been changed?
+	\$oldTitle = \$post->old('title');
+");?>
+
+
+
+
+
 <h1>Labels</h1>
 <p>
 	A Label is a bean with just a name property. You can generate a batch of labels of a certain type
@@ -2851,6 +2879,10 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 	This means that this is a relatively safe cache to use. Issue the following statement to activate the Query Writer Cache:
 </p>
 <?php code("
+	R::useWriterCache(true); (3.5.1+)
+	
+	//or...
+
 	R::\$writer->setUseCache(true);
 ");?>
 
@@ -3102,10 +3134,11 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 <h2>Facade-only methods</h2>
 <p>
 	While most Facade methods are also available in instances, there are some exceptions.
-	First there are some batch methods like StoreAll and trashAll, these are just loops around store() and trash() but they
+	First there are some batch methods like StoreAll, trashAll, dispenseAll these are just loops around store() and trash() but they
 	are only available in the facade. Similarly, R::transaction is just a wrapper around the transaction methods (commit,begin and rollback).
 	Some methods just deal with the facade itself: configureFacadeWithToolbox(), addDatabase(), selectDatabase() - these methods
 	occur only in the facade of course.
+	Then there is R::inspect, this is just a wrapper around $writer->getColumns and $writer->getTables.
 	Finally there the loadMulti method is a facade-only method because it's actually just a loop around R::load.
 </p>
 
@@ -3137,7 +3170,20 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 	page about the build script: <a href="/replica#replica_and_plugins">Replica</a>.
 </p>
 
-
+<h2 id="dynamic_plugins">Dynamic Plugins (3.5+)</h2>
+<p>
+	As of RedBeanPHP 3.5 you can dynamically add new methods to
+	the R facade (only works in PHP 5.3 and higher).
+</p>
+<?php code("
+	//Install the tea plugin	
+	R::ext( 'makeTea', function(\$flavour) {
+		return \"Tea: {\$flavour}\";
+	} );
+	
+	//Make some tea
+	echo R::makeTea('Earl Grey');
+"); ?>
 
 
 <category>Project</category>
@@ -3201,7 +3247,7 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 	The default distribution is not bloated but you can compile
 	a lighter RedBeanPHP by using the Replica build tool. 
 </p>
-<h2>Why does RedBeanPHP not support custom table mapping (anymore)?</h2>
+<h2 id="beanformatter">Why does RedBeanPHP not support custom table mapping (anymore)?</h2>
 <p>
 	The idea of RedBeanPHP is to generate a useable and queryable
 	schema based on your code and without any configuration.
@@ -3210,7 +3256,15 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 	power features like deep-copy have to make assumptions about database
 	layout and table naming conventions. They can of course use 
 	some kind of configuration file to figure things out, but hey the whole
-	idea of RedBeanPHP was <b>NOT</b> to use configuration! 
+	idea of RedBeanPHP was <b>NOT</b> to use configuration!
+	<br /><br />
+	In the past RedBeanPHP had a bean formatter for custom mappings, this
+	functionality does not exist anymore. If you still require custom mappings,
+	for instance to use RedBeanPHP with existing schemas you might want to try
+	to use <b>VIEWS</b>. Simply map the views to your tables. If you only change table
+	names and column names your views can be used for updates as well.
+	Although not a perfect solution we have received some positive feedback
+	about this approach. 
 </p>
 <h2>Why does RedBeanPHP not provide a portable query language?</h2>
 <p>
@@ -3234,6 +3288,8 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 	&quot;user_project&quot; or &quot;ProjectUsr&quot; you can use &quot;participant&quot;. This makes your
 	database prettier and easier to read as well.
 </p>
+
+
 
 <p class="version">
 	Note that RedBeanPHP 3.4+ supports so-called beautiful column names, this will turn camelCased column names in underscored_column_names.
@@ -3357,24 +3413,46 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 </p>
 
 <p>
-	RedBeanPHP 3.5 Beta 9 is here!
-	Download
-	<a title="Download the latest beta" href="downloads/RedBeanPHP3_5beta9.tar.gz" >RedBeanPHP 3.5 Beta 9</a>.
-	and start testing the new RedBeanPHP !	
+	RedBeanPHP 3.5 has been released. Read the <a href="/changelog" title="Changelog">Changelog</a>.
 </p>
 
-<h2>New in beta 9</h2>
+<h2>New in beta 10</h2>
 <p>
-	R::transaction() now returns result.
-</p>
-<h2>New in beta 8</h2>
-<p>
-	Read the <i>HTTP/1.1</i> spec, turns out Resty BeanCan confused the meaning of POST and PUT so I swapped these.
-	Also updated the <a href="/rest_server" title="Resty BeanCan documentation">manual</a> and the tests. So, <b>POST</b> means <b>CREATE</b> and <b>PUT</b> means <b>UPDATE</b>.
+	Beta 10 offers a couple of last minute features:
 </p>
 
-<h2>Changes in RedBeanPHP 3.5</h2>
+
+<br /><br />
+<p class="alsosee">
+	For details concerning <b>versioning</b> guidelines of RedBeanPHP take a look at the
+	<a title="Learn more about RedBeanPHP versioning" href="/versioning">versioning page</a>.
+</p>
+
+<p class="alsosee">
+	Where is RedBeanPHP <b>heading</b>? Take a look into the crystal ball, peek into the future on the
+	<a href="/roadmap" title="Upcoming features in the object relational mapper">RedBeanPHP roadmap</a>.
+</p>
+
+
+<h1>Changelog</h1>
+
+<style>
+table { margin-bottom: 50px; }
+table th:nth-child(1) { width: 200px; } 
+</style>
+
+<h2>2013-11-06: V 3.5.1 (Support Update 1)</h2>
 <ul>
+<li>DONE - Added __toString to SQLHelper, can be used for debugging purposes</li>
+<li>DONE - Added R::useWriterCache(), a nicer alias for $writer-&gt;setUseCache</li>
+</ul>
+
+<h2>2013-10-01: V 3.5.0 LTS</h2>
+<ul>
+<li>DONE - <a href="/create_a_bean#dispenseall" title="Learn more about dispensing multiple beans at once!" >R::dispenseAll</a>, 
+a facade-only method to dispense various types at once</li>
+<li>DONE - <a href="/loading_a_bean#batch" title="loadAll, alias for batch().">R::loadAll</a>, alias for R::batch for consistency</li>
+<li>DONE - <a href="/internals#dynamic_plugins" title="Dynamically extend the RedBeanPHP R-facade with your own plugins!">R::ext()</a>, to add dynamic plugins</li>
 <li>DONE - added <a href="/schema" title="Inspect method">R::inspect()</a> replaces ugly R::$writer-&gt;methods().</li>
 <li>DONE - <a href="/import_and_export#toarray" title="Turn a list of beans into an array">R::beansToArray</a></li>
 <li>DONE - Refactored glueSQLCondition method, added tests</li>
@@ -3397,27 +3475,6 @@ of the bean is stored in meta property 'type' and can be retrieved as follows:
 <li>DONE - Improve notation Preloader, use 'ownPage|page' instead of 'ownPage'=&gt;'page'
 <li>DONE - <a href="/cheatsheet" title="Cheatsheet for relational mapping">Cheatsheet / relational matrix</a></li>
 </ul>
-
-
-
-<br /><br />
-<p class="alsosee">
-	For details concerning <b>versioning</b> guidelines of RedBeanPHP take a look at the
-	<a title="Learn more about RedBeanPHP versioning" href="/versioning">versioning page</a>.
-</p>
-
-<p class="alsosee">
-	Where is RedBeanPHP <b>heading</b>? Take a look into the crystal ball, peek into the future on the
-	<a href="/roadmap" title="Upcoming features in the object relational mapper">RedBeanPHP roadmap</a>.
-</p>
-
-
-<h1>Changelog</h1>
-
-<style>
-table { margin-bottom: 50px; }
-table th:nth-child(1) { width: 200px; } 
-</style>
 
 <h2>2013-06-12: V 3.4.7</h2>
 <ul>
@@ -3465,9 +3522,9 @@ table th:nth-child(1) { width: 200px; }
 <li>DONE - Renewed Support for <a href="/create_a_bean#datatypes">spatial types</a></li>
 <li>DONE - <a href="/query_cache" title="Query Cache">Query Writer Cache</a></li>
 <li>DONE - Make Facade thinner (Harmonize APIs)</li>
-<li>DONE - <a href="/tainted" title="Old properties">$bean-&gt;old('property');</a> - Read previous value (3.3.4)</li>
-<li>DONE - <a href="/tainted" title="Changed bean properties">$bean-&gt;hasChanged('property'); (3.3.4)</a></li>
-<li>DONE - <a href="/tainted" title="isTainted">$bean-&gt;isTainted();</a> - shorthand for getMeta('tainted') (3.3.4)</li>
+<li>DONE - <a href="/meta_data" title="Old properties">$bean-&gt;old('property');</a> - Read previous value (3.3.4)</li>
+<li>DONE - <a href="/meta_data" title="Changed bean properties">$bean-&gt;hasChanged('property'); (3.3.4)</a></li>
+<li>DONE - <a href="/meta_data" title="isTainted">$bean-&gt;isTainted();</a> - shorthand for getMeta('tainted') (3.3.4)</li>
 <li>DONE - Advanced <a href="/import_and_export#export34">exportAll</a></li>
 <li>DONE - MySQL boolean type now uses BOOLEAN columns</li>
 <li>DONE - Transactions will be disabled in fluid mode to suppress errors due to schema changes</li>
@@ -3994,6 +4051,76 @@ These plugin extensions of R are now compiled into the R-class by the Replica Bu
 methods on the facade class itself you should replace this code using a find replace action on your project.
 </p>
 
+<h1>Plugins</h1>
+<p>
+	Plugins are an elegant way to add new functionality to RedBeanPHP. To create a plugin,
+	create a class or function and use:
+</p>
+<?php
+code("
+	R::ext( 'doSomething', function() { 
+		return MyClass::myMethod(); 
+	} );
+");
+?>
+<p>
+	to add your new feature to the R-class (required PHP 5.3+ and RedBeanPHP 3.5+).
+	For older versions of PHP use:
+</p>
+<?php code("
+	R::ext( 'doSomething', 
+		array( 'MyClass', 'MyStaticMethod' )
+	);
+"); ?>
+<p>
+	Now you can use your plugin like this:
+</p>
+<?php code("
+	R::doSomething();
+"); ?>
+<p>
+	it's that easy! Here is a list of some interesting 3rd party plugins for RedBeanPHP !
+</p>
+<h2>Plugins for RedBeanPHP</h2>
+<p>
+	Here is a list of 3rd party plugins for RedBeanPHP, enjoy!
+</p>
+<h3>ReBean</h3>
+<p>
+	Plugin: <a title="Automatic Revisions" href="https://github.com/zewa666/RedBean_ReBean" target="_blank" >ReBean</a>, 
+	automatic revision management for RedBeanPHP.<br />
+	Author: <a href="https://github.com/zewa666" target="_blank" title="Author page on Github">Zewa666</a><br/>
+	<br />
+	ReBean adds revision tables to your database and uses triggers to automatically insert
+	revision beans.
+</p>
+<h3>StdErr Logger</h3>
+<p>
+	Plugin:<a title="StdErr logger for RedBeanPHP" href="https://github.com/zewa666/redbean/tree/StdErrorLogger" target="_blank">StdErr Logger</a>,
+	Logger that writes to StdErr.<br />
+	Author: <a href="https://github.com/zewa666" target="_blank" title="Author page on Github">Zewa666</a><br/>
+	<br />
+	Logs queries to error log.
+</p>
+<h3>MySQL Backup Plugin</h3>
+<p>
+	Plugin:<a title="MySQL Backup Plugin for RedBeanPHP" href="https://github.com/zewa666/RedBean_MysqlBackup" target="_blank" >MySQL Backup</a>,
+	Table exporter for MySQL<br/>
+	Author: <a href="https://github.com/zewa666" target="_blank" title="Author page on Github">Zewa666</a><br/>
+	<br />
+	Backups all tables in a MySQL database to a file. Only works for MySQL.
+</p>
+<h3 id="german_porter_stemmer_plugin">German Porter Stemmer Plugin</h3>
+<p>
+	Plugin:<a title="German Porter Stemmer Plugin" href="https://github.com/zewa666/RedBean_German_PorterStemmer" target="_blank" >German Porter Stemmer Plugin</a>,
+	a tool to improve search results in German language.<br/>
+	Author: <a href="https://github.com/zewa666" target="_blank" title="Author page on Github">Zewa666</a><br/>
+	<br />
+	A linguistic extension to improve search results for German language.
+</p>
+
+
+
 <h1>License</h1>
 <h2>New BSD License</h2>
 <p>
@@ -4028,6 +4155,62 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 </p>
 
+<h1>Credits</h1>
+<p>
+	RedBeanPHP has been written by Gabor de Mooij and the
+	RedBeanPHP community. I would like to thank all of the
+	contributors for their effort. Without your help it would not
+	have been possible to maintain this wonderful project. 
+</p>
+<h2>Thanks to:</h2>
+<p>
+
+daviddeutsch<br />
+tomasklapka<br />
+damianb<br />
+seanhess<br />
+murich<br />
+jstsch<br />
+hugollm<br />
+SteveEdson<br />
+brianhaveri<br />
+agvstin<br />
+F21<br />
+gaving<br />
+zerotri<br />
+midnightmonster<br />
+palicao<br />
+daandavidsz<br />
+kadishmal<br />
+etisfo<br />
+saetia<br />
+michaelklishin<br />
+m6w6<br />
+marcioAlmada<br />
+rlerdorf<br />
+sandulungu<br />
+zebulon303<br />
+luniki<br />
+<br/>
+
+	Without your help, RedBeanPHP would not be such a great project.
+	Thank you! Let's make RedBeanPHP even better!
+</p>
+
+<p>
+	Special thanks to Zurmo (for using RedBeanPHP and promoting it), 
+	Sean Hess (for using and promoting RedBeanPHP when it did not even have its own site),
+	Wouter Toering (for the CSS), Erik Roelofs (for the inspiration to write RedBeanPHP),
+	David Deutsch (for support and contributions), Zewa (for your plugins), 
+	Richard Keizer (for support),
+	Robin Mogre (for helping me
+	with the design in version 2) and Robert Cabri (for support).
+</p>
+
+<p>
+	Did I forget to mention you ? Please don't feel offended. Just drop me a mail, sometimes it's hard to track all
+	of you, especially because we are such a dynamic community. 
+</p>
 
 
 <category>Tools</category>
