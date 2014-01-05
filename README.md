@@ -1,4 +1,4 @@
-rbdocs
+rb 中文文档
 ======
 
-RedBeanPHP Manual
+RedBeanPHP 手册
